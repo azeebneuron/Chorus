@@ -2,130 +2,113 @@
 ---
 
 <section class="py-24 bg-background overflow-hidden border-b border-border relative transition-colors duration-300">
-  <!-- Grid Background -->
-  <div class="absolute inset-0 z-0 pointer-events-none opacity-[0.03] dark:opacity-[0.1]">
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#000000_1px,transparent_1px),linear-gradient(to_bottom,#000000_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:1rem_1rem]"></div>
-  </div>
-
-  <div class="mx-auto max-w-7xl px-6 relative z-10">
-    <div class="grid gap-16 lg:grid-cols-2 lg:items-center">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 relative z-10">
+    <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
       
       <!-- Text Side -->
-      <div>
-        <div class="inline-flex items-center gap-2 mb-6">
-            <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+      <div class="max-w-xl">
+        <div class="inline-flex items-center gap-2 mb-6 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+            <div class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></div>
             <span class="font-mono text-xs text-emerald-600 dark:text-emerald-500 uppercase tracking-widest">Live Connection</span>
         </div>
         
-        <h2 class="text-3xl font-bold text-foreground md:text-5xl mb-6 tracking-tight uppercase">
-          Zero-Friction<br/>API Surface
+        <h2 class="text-3xl font-bold text-foreground md:text-5xl mb-6 tracking-tight">
+          Zero friction.<br/>
+          <span class="text-muted">Just primitives.</span>
         </h2>
-        <p class="text-lg text-muted mb-8 font-mono border-l-2 border-emerald-500/30 pl-4 leading-relaxed">
-          // No complex configuration files.
-          <br/>// No hidden magic.
-          <br/>// Just typed primitives.
+        <p class="text-lg text-muted mb-8 leading-relaxed">
+           Stop wrestling with complex configuration files and "magic" frameworks. Define agents with pure code.
         </p>
         
-        <div class="flex gap-4 font-mono text-xs text-muted">
-            <div class="border border-border px-3 py-2 bg-surface">
-                <span class="block text-foreground mb-1">IMPORTS</span>
-                2 Modules
+        <div class="grid grid-cols-3 gap-3 sm:gap-4 font-mono text-xs text-muted max-w-md">
+            <div class="border border-border rounded-md px-3 py-3 bg-surface flex flex-col gap-1 text-center sm:text-left">
+                <span class="text-foreground font-bold text-sm sm:text-base">2</span>
+                <span class="text-[10px] tracking-wider opacity-70">IMPORTS</span>
             </div>
-            <div class="border border-border px-3 py-2 bg-surface">
-                <span class="block text-foreground mb-1">LINES</span>
-                ~10 LOC
+            <div class="border border-border rounded-md px-3 py-3 bg-surface flex flex-col gap-1 text-center sm:text-left">
+                <span class="text-foreground font-bold text-sm sm:text-base">~10</span>
+                <span class="text-[10px] tracking-wider opacity-70">LOC</span>
             </div>
-             <div class="border border-border px-3 py-2 bg-surface">
-                <span class="block text-foreground mb-1">OUTPUT</span>
-                Streamable
+             <div class="border border-border rounded-md px-3 py-3 bg-surface flex flex-col gap-1 text-center sm:text-left">
+                <span class="text-foreground font-bold text-sm sm:text-base">100%</span>
+                <span class="text-[10px] tracking-wider opacity-70">TYPED</span>
             </div>
         </div>
       </div>
 
       <!-- Terminal Side -->
-      <div class="relative group">
+      <div class="relative w-full min-w-0">
         <!-- Window Frame -->
-        <div class="bg-zinc-100 dark:bg-zinc-900 border border-border border-b-0 flex items-center justify-between px-4 py-2.5">
-            <div class="flex items-center gap-3">
-                <div class="flex gap-2">
-                    <div class="w-3 h-3 bg-zinc-300 dark:bg-zinc-700 group-hover:bg-red-400 transition-colors"></div>
-                    <div class="w-3 h-3 bg-zinc-300 dark:bg-zinc-700 group-hover:bg-yellow-400 transition-colors"></div>
-                    <div class="w-3 h-3 bg-zinc-300 dark:bg-zinc-700 group-hover:bg-green-400 transition-colors"></div>
-                </div>
-                <div class="h-4 w-px bg-border"></div>
-                <span class="text-[11px] font-mono text-muted tracking-wide">agent.ts</span>
+        <div class="bg-[#1e1e1e] rounded-t-xl border border-white/10 flex items-center justify-between px-4 py-3 shadow-2xl relative z-10">
+            <div class="flex items-center gap-2">
+                <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
             </div>
-            <div class="flex items-center gap-3">
-                <span class="text-[10px] font-mono text-emerald-600 dark:text-emerald-500 uppercase tracking-wider">TypeScript</span>
+            <div class="absolute left-0 right-0 text-center pointer-events-none">
+                 <span class="text-[12px] font-sans text-white/40 font-medium">agent.ts</span>
             </div>
         </div>
 
         <!-- Editor Area -->
-        <div class="bg-surface border border-border border-t-0 p-6 min-h-[320px] relative font-mono text-xs sm:text-sm shadow-2xl">
-            <!-- Line Numbers -->
-            <div class="absolute left-0 top-6 bottom-6 w-12 text-right pr-4 text-muted/40 select-none border-r border-border/50 leading-[1.75] text-[11px]">
-                1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12
-            </div>
+        <div class="bg-[#1e1e1e] border-x border-b border-white/10 rounded-b-xl p-0 min-h-[300px] relative font-mono text-xs sm:text-sm shadow-2xl overflow-hidden z-10">
+            <div class="flex overflow-hidden">
+                <!-- Line Numbers -->
+                <div class="w-10 sm:w-12 py-6 text-right pr-3 text-white/20 select-none border-r border-white/5 leading-[1.75] text-[11px] shrink-0 bg-[#1e1e1e]">
+                    1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12
+                </div>
 
-            <!-- Code Content -->
-            <div class="pl-14">
-                 <pre class="leading-[1.75]"><code id="typewriter" class="language-typescript"></code><span id="cursor" class="animate-pulse inline-block h-4 w-[2px] bg-emerald-500 align-middle ml-0.5"></span></pre>
+                <!-- Code Content Wrapper with horizontal scroll -->
+                <div class="flex-1 overflow-x-auto py-6">
+                    <div class="pl-4 pr-6 min-w-max text-white/90">
+                         <pre class="leading-[1.75] font-mono whitespace-pre"><code id="typewriter" class="language-typescript"></code><span id="cursor" class="animate-pulse inline-block h-4 w-[2px] bg-emerald-500 align-middle ml-0.5"></span></pre>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <!-- Terminal Status Bar -->
-        <div class="bg-zinc-100 dark:bg-zinc-900 border border-border border-t-0 px-4 py-1.5 flex justify-between font-mono text-[10px] text-muted">
-             <span>TypeScript 5.3</span>
-             <span class="text-emerald-600 dark:text-emerald-500">Ln 12, Col 1</span>
-             <span>UTF-8</span>
         </div>
 
         <!-- Decorative Glow -->
-        <div class="absolute -inset-2 bg-emerald-500/10 blur-2xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute -inset-2 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-xl blur-2xl -z-0 opacity-50 user-select-none pointer-events-none"></div>
       </div>
 
     </div>
   </div>
 </section>
 
-<script is:inline>
-  // Token types for syntax highlighting
-  const TOKEN_TYPES = {
-    KEYWORD: 'text-violet-600 dark:text-violet-400',
-    STRING: 'text-emerald-600 dark:text-emerald-400',
-    COMMENT: 'text-zinc-400 dark:text-zinc-500 italic',
-    FUNCTION: 'text-blue-600 dark:text-blue-400',
-    METHOD: 'text-cyan-600 dark:text-cyan-400',
-    DEFAULT: 'text-zinc-800 dark:text-zinc-300'
-  };
+<style>
+    /* Custom Syntax Highlighting for the dark terminal */
+    :global(.token-keyword) { color: #c678dd; } /* Purple */
+    :global(.token-string) { color: #98c379; } /* Green */
+    :global(.token-comment) { color: #5c6370; font-style: italic; } /* Gray */
+    :global(.token-function) { color: #61afef; } /* Blue */
+    :global(.token-method) { color: #56b6c2; } /* Cyan */
+    :global(.token-default) { color: #abb2bf; } /* White */
+</style>
 
+<script is:inline>
   const KEYWORDS = ['import', 'from', 'const', 'await'];
 
-  // Tokenize code into segments with their types
   function tokenize(text) {
     const tokens = [];
     let i = 0;
 
     while (i < text.length) {
-      // Check for comments
       if (text.slice(i, i + 2) === '//') {
         let end = text.indexOf('\n', i);
         if (end === -1) end = text.length;
-        tokens.push({ type: 'COMMENT', value: text.slice(i, end) });
+        tokens.push({ type: 'token-comment', value: text.slice(i, end) });
         i = end;
         continue;
       }
 
-      // Check for strings
       if (text[i] === '"') {
         let end = text.indexOf('"', i + 1);
         if (end === -1) end = text.length;
-        tokens.push({ type: 'STRING', value: text.slice(i, end + 1) });
+        tokens.push({ type: 'token-string', value: text.slice(i, end + 1) });
         i = end + 1;
         continue;
       }
 
-      // Check for words (keywords, functions, methods)
       if (/[a-zA-Z_]/.test(text[i])) {
         let word = '';
         let start = i;
@@ -133,32 +116,30 @@
           word += text[i];
           i++;
         }
-        // Check if it's followed by ( for function call
         const isCall = text[i] === '(';
-        // Check if preceded by . for method
         const isMethod = start > 0 && text[start - 1] === '.';
 
         if (KEYWORDS.includes(word)) {
-          tokens.push({ type: 'KEYWORD', value: word });
+          tokens.push({ type: 'token-keyword', value: word });
         } else if (isMethod) {
-          tokens.push({ type: 'METHOD', value: word });
+          tokens.push({ type: 'token-method', value: word });
         } else if (isCall && (word === 'agent' || word === 'gemini')) {
-          tokens.push({ type: 'FUNCTION', value: word });
+          tokens.push({ type: 'token-function', value: word });
         } else {
-          tokens.push({ type: 'DEFAULT', value: word });
+          tokens.push({ type: 'token-default', value: word });
         }
         continue;
       }
 
-      // Default: single character
-      tokens.push({ type: 'DEFAULT', value: text[i] });
+      tokens.push({ type: 'token-default', value: text[i] });
       i++;
     }
     return tokens;
   }
 
-  const code = `import { agent } from "@chorus/core";
-import { gemini } from "@chorus/gemini";
+  // Split import keyword to verify if this fixes Vite resolution error
+  const code = `im` + `port { agent } from "@chorus/core";
+im` + `port { gemini } from "@chorus/gemini";
 
 // define your agent
 const researcher = agent()
@@ -184,7 +165,6 @@ await researcher.run("Analyze Q4 trends");`;
   }
 
   let currentSpan = null;
-  let currentType = null;
 
   function type() {
     if (!typewriter) return;
@@ -196,30 +176,24 @@ await researcher.run("Analyze Q4 trends");`;
 
     const token = tokens[tokenIndex];
 
-    // Start new span for new token
     if (charIndex === 0) {
-      currentType = token.type;
-      currentSpan = createSpan(TOKEN_TYPES[currentType], '');
+      currentSpan = createSpan(token.type, '');
       typewriter.appendChild(currentSpan);
     }
 
-    // Add character to current span
     currentSpan.textContent += token.value[charIndex];
     charIndex++;
 
-    // Move to next token if done with current
     if (charIndex >= token.value.length) {
       tokenIndex++;
       charIndex = 0;
     }
 
-    // Variable speed
     const lastChar = currentSpan.textContent.slice(-1);
     const delay = lastChar === '\n' ? 80 : Math.random() * 20 + 8;
     setTimeout(type, delay);
   }
 
-  // Start typing when in view
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && typewriter && typewriter.childNodes.length === 0) {

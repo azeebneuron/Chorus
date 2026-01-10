@@ -2,76 +2,64 @@
 ---
 
 <section class="relative bg-background py-32 text-foreground overflow-hidden border-b border-border transition-colors duration-300">
-  <!-- Background Pattern -->
-  <div class="absolute inset-0 z-0 pointer-events-none opacity-[0.03] dark:opacity-[0.1]">
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#000000_1px,transparent_1px),linear-gradient(to_bottom,#000000_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:2rem_2rem]"></div>
-  </div>
-
   <div class="mx-auto max-w-4xl px-6 relative z-10">
     <!-- Section Header -->
     <div class="flex items-center gap-4 mb-24 opacity-60">
         <div class="h-px bg-border flex-1"></div>
-        <span class="font-mono text-xs tracking-widest uppercase text-muted">/ERR_LEGACY_SYSTEMS</span>
+        <span class="font-mono text-xs tracking-widest uppercase text-muted">EVOLUTION_OF_AGENCY</span>
         <div class="h-px bg-border flex-1"></div>
     </div>
 
     <div class="space-y-32">
         <div class="reveal-on-scroll opacity-0 transition-all duration-700 translate-y-8 text-center">
-            <h2 class="text-4xl font-bold md:text-6xl font-mono uppercase tracking-tighter">
-            System Failure<span class="text-red-500">.</span>
+            <h2 class="text-4xl font-bold md:text-6xl font-sans tracking-tighter">
+            Beyond the<br/><span class="text-muted">Toy Phase.</span>
             </h2>
-            <p class="mt-4 text-muted font-mono text-sm">DETECTED INEFFICIENCIES IN CURRENT STACK</p>
+            <p class="mt-4 text-muted text-lg max-w-lg mx-auto">Agents have evolved. Your infrastructure should too.</p>
         </div>
 
+      <!-- Gen 1 -->
       <div class="reveal-on-scroll opacity-0 transition-all duration-700 translate-y-8">
-        <div class="border-l-2 border-border pl-8 relative">
-            <div class="absolute -left-[9px] top-0 w-4 h-4 bg-background border-2 border-border flex items-center justify-center">
+        <div class="border-l-2 border-border pl-8 relative group">
+            <div class="absolute -left-[9px] top-0 w-4 h-4 bg-background border-2 border-border flex items-center justify-center group-hover:border-muted transition-colors">
                 <div class="w-1.5 h-1.5 bg-muted"></div>
             </div>
-            <h3 class="text-xl font-mono text-muted mb-2 uppercase tracking-wide">Target: LangChain</h3>
-            <p class="text-2xl md:text-3xl font-medium leading-tight">
-              47 abstractions deep. <span class="bg-red-500/10 text-red-600 dark:text-red-400 px-1 border border-red-500/20 text-sm align-middle ml-2">STACK_OVERFLOW</span>
-              <br/><span class="text-muted text-xl">Debug trace unavailable.</span>
+            <h3 class="text-xl font-mono text-muted mb-2 uppercase tracking-wide">Gen 1: Scripted Chains</h3>
+            <p class="text-2xl md:text-3xl font-medium leading-tight text-foreground/80">
+              Rigid pipelines. Fragile state.
+              <br/><span class="text-muted text-xl">The "maintainability nightmare" era.</span>
             </p>
         </div>
       </div>
 
+      <!-- Gen 2 -->
       <div class="reveal-on-scroll opacity-0 transition-all duration-700 translate-y-8 text-right">
-         <div class="border-r-2 border-border pr-8 relative">
-            <div class="absolute -right-[9px] top-0 w-4 h-4 rounded-full bg-background border-2 border-border flex items-center justify-center">
+         <div class="border-r-2 border-border pr-8 relative group">
+            <div class="absolute -right-[9px] top-0 w-4 h-4 rounded-full bg-background border-2 border-border flex items-center justify-center group-hover:border-muted transition-colors">
                 <div class="w-1.5 h-1.5 bg-muted rounded-full"></div>
             </div>
-            <h3 class="text-xl font-mono text-muted mb-2 uppercase tracking-wide">Target: CrewAI</h3>
-            <p class="text-2xl md:text-3xl font-medium leading-tight">
-              Opinionated role systems. <span class="bg-yellow-500/10 text-yellow-600 dark:text-yellow-500 px-1 border border-yellow-500/20 text-sm align-middle ml-2">RESTRICTED</span>
-              <br/><span class="text-muted text-xl">Python dependency hell.</span>
+            <h3 class="text-xl font-mono text-muted mb-2 uppercase tracking-wide">Gen 2: Black Box "Crews"</h3>
+            <p class="text-2xl md:text-3xl font-medium leading-tight text-foreground/80">
+              Hidden prompts. Magic orchestration.
+              <br/><span class="text-muted text-xl">Great for demos, bad for production.</span>
             </p>
          </div>
       </div>
 
+      <!-- Gen 3 -->
       <div class="reveal-on-scroll opacity-0 transition-all duration-700 translate-y-8">
-        <div class="border-l-2 border-border pl-8 relative">
-            <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-background border-2 border-border flex items-center justify-center">
-                <div class="w-1.5 h-1.5 bg-muted rounded-full"></div>
+        <div class="border-l-2 border-emerald-500 pl-8 relative">
+            <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-background border-2 border-emerald-500 flex items-center justify-center shadow-[0_0_10px_rgba(16,185,129,0.5)]">
+                <div class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></div>
             </div>
-            <h3 class="text-xl font-mono text-muted mb-2 uppercase tracking-wide">Target: AutoGen</h3>
-            <p class="text-2xl md:text-3xl font-medium leading-tight">
-              Documentation scan required. <span class="bg-zinc-100 dark:bg-zinc-800 text-muted px-1 border border-border text-sm align-middle ml-2">ETA: 7_DAYS</span>
-              <br/><span class="text-muted text-xl">Complexity overload.</span>
+            <h3 class="text-xl font-mono text-emerald-600 dark:text-emerald-500 mb-2 uppercase tracking-wide font-bold">Gen 3: Chorus</h3>
+            <p class="text-2xl md:text-3xl font-bold leading-tight text-foreground">
+              Type-safe swarms.
+              <span class="block text-xl font-normal text-muted mt-2">Fully observable. Control flow you can actually debug.</span>
             </p>
         </div>
       </div>
 
-      <div class="reveal-on-scroll opacity-0 transition-all duration-700 translate-y-8 text-center pt-20">
-        <div class="inline-flex flex-col items-center">
-             <div class="w-px h-16 bg-gradient-to-b from-transparent to-emerald-500 mb-4"></div>
-             <p class="text-5xl md:text-7xl font-bold uppercase tracking-tighter text-foreground">
-                <span class="text-emerald-500">Reboot</span> System
-            </p>
-             <p class="mt-4 font-mono text-emerald-600/70 dark:text-emerald-500/50 text-sm tracking-widest">INITIATING NEW PROTOCOL...</p>
-        </div>
-       
-      </div>
     </div>
   </div>
 </section>

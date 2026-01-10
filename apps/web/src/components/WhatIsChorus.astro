@@ -1,67 +1,87 @@
 ---
 ---
 
-<section class="py-32 bg-surface border-b border-border transition-colors duration-300">
-  <div class="mx-auto max-w-6xl px-6 relative z-10">
-    <div class="mb-20 text-center">
-      <h2 class="text-3xl font-bold text-foreground md:text-5xl font-mono uppercase tracking-tight">
-        Core <span class="bg-foreground text-background px-3 py-1">Architecture</span>
+<section class="py-32 bg-surface text-foreground border-b border-border transition-colors duration-300">
+  <div class="mx-auto max-w-7xl px-6 relative z-10">
+    <div class="mb-20 text-center max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold md:text-5xl font-sans tracking-tight mb-4">
+        Everything you need to <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-cyan-500">orchestrate intelligence.</span>
       </h2>
-      <p class="mt-4 text-muted font-mono text-sm tracking-widest">OPTIMIZED FOR SCALE AND SAFETY</p>
+      <p class="text-muted text-lg">
+        Chorus provides the primitives to build reliable, observable, and type-safe agentic systems.
+      </p>
     </div>
 
-    <div class="grid gap-px bg-border border border-border md:grid-cols-2 shadow-lg">
+    <!-- Bento Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-        <!-- Feature 1 -->
-      <div class="relative bg-background p-8 group overflow-hidden hover:bg-surface transition-colors">
-        <div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-500" aria-hidden="true"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"/></svg>
+      <!-- Feature 1: TypeScript First (Large Span) -->
+      <div class="md:col-span-2 relative group overflow-hidden rounded-2xl border border-border bg-background p-8 hover:border-emerald-500/30 transition-all duration-300">
+        <div class="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-100 transition-opacity">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-500"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"/></svg>
         </div>
-        <div class="font-mono text-[11px] text-emerald-600 dark:text-emerald-500 mb-3 tracking-widest">01__TYPE_SAFETY</div>
-        <h3 class="text-xl font-bold text-foreground mb-3">TypeScript-First</h3>
-        <p class="text-muted text-sm leading-relaxed">
-            Full static analysis enabled. IDE autocomplete active.
-            <span class="block mt-2 text-muted/60 font-mono text-xs">// No more runtime hallucinations for your code.</span>
-        </p>
-      </div>
-
-       <!-- Feature 2 -->
-      <div class="relative bg-background p-8 group overflow-hidden hover:bg-surface transition-colors">
-        <div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity">
-             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-500" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>
+        <div class="relative z-10">
+            <div class="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-6">
+                <span class="font-mono text-emerald-600 dark:text-emerald-400 font-bold">TS</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-3">TypeScript Native</h3>
+            <p class="text-muted leading-relaxed max-w-md">
+                Don't fight the framework. Chorus is built to leverage TypeScript's type system for maximum safety and developer experience.
+                <br/><span class="text-sm text-emerald-600 dark:text-emerald-500 mt-2 block font-mono">End-to-end type safety, from prompt to response.</span>
+            </p>
         </div>
-        <div class="font-mono text-[11px] text-emerald-600 dark:text-emerald-500 mb-3 tracking-widest">02__AGNOSTIC</div>
-        <h3 class="text-xl font-bold text-foreground mb-3">Model Neutral</h3>
-        <p class="text-muted text-sm leading-relaxed">
-            Swap inference providers hot-swappable.
-            <span class="block mt-2 font-mono text-xs">[ Gemini | GPT-4 | Claude | Llama 3 ]</span>
-        </p>
+        <!-- Decorative Code Bg -->
+        <div class="hidden sm:block absolute -bottom-8 -right-8 w-64 h-64 bg-surface rounded-tl-3xl border border-border p-4 font-mono text-[10px] text-muted opacity-50 group-hover:opacity-100 transition-opacity select-none pointer-events-none">
+            interface Agent {'{'}
+            <br/>&nbsp;&nbsp;id: string;
+            <br/>&nbsp;&nbsp;role: Role;
+            <br/>&nbsp;&nbsp;tools: Tool[];
+            <br/>{'}'}
+        </div>
       </div>
 
-       <!-- Feature 3 -->
-      <div class="relative bg-background p-8 group overflow-hidden hover:bg-surface transition-colors">
-         <div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-500" aria-hidden="true"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/></svg>
-         </div>
-        <div class="font-mono text-[11px] text-emerald-600 dark:text-emerald-500 mb-3 tracking-widest">03__MODULARITY</div>
-        <h3 class="text-xl font-bold text-foreground mb-3">Composable Primitives</h3>
-        <p class="text-muted text-sm leading-relaxed">
-            Atomic building blocks. Zero framework overhead.
-            <span class="block mt-2 font-mono text-xs text-emerald-600 dark:text-emerald-500">import {'{ Agent, Tool }'} from '@chorus/core';</span>
-        </p>
+      <!-- Feature 2: Model Agnostic -->
+      <div class="relative group overflow-hidden rounded-2xl border border-border bg-background p-8 hover:border-emerald-500/30 transition-all duration-300">
+        <div class="absolute inset-0 bg-gradient-to-br from-transparent to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative z-10">
+            <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-6">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Model Agnostic</h3>
+            <p class="text-muted text-sm leading-relaxed">
+                Swap providers instantly. No vendor lock-in. Support for Gemini, OpenAI, Claude, and local LLMs.
+            </p>
+        </div>
       </div>
 
-       <!-- Feature 4 -->
-      <div class="relative bg-background p-8 group overflow-hidden hover:bg-surface transition-colors">
-         <div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-500" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+      <!-- Feature 3: Modularity -->
+      <div class="relative group overflow-hidden rounded-2xl border border-border bg-background p-8 hover:border-emerald-500/30 transition-all duration-300">
+         <div class="absolute inset-0 bg-gradient-to-tr from-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative z-10">
+            <div class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-purple-500"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/></svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Modular Primitives</h3>
+            <p class="text-muted text-sm leading-relaxed">
+                Atomic building blocks. Compose agents, tools, and memories like Lego bricks.
+            </p>
+        </div>
+      </div>
+
+      <!-- Feature 4: Observability (Large Span) -->
+      <div class="md:col-span-2 relative group overflow-hidden rounded-2xl border border-border bg-background p-8 hover:border-emerald-500/30 transition-all duration-300">
+         <div class="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-100 transition-opacity">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-500"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
          </div>
-        <div class="font-mono text-[11px] text-emerald-600 dark:text-emerald-500 mb-3 tracking-widest">04__OBSERVABILITY</div>
-        <h3 class="text-xl font-bold text-foreground mb-3">Deep Debugging</h3>
-        <p class="text-muted text-sm leading-relaxed">
-            Step-through execution traces. Thought process visualization.
-            <span class="block mt-2 font-mono text-xs text-emerald-600 dark:text-emerald-500">>> Inspecting Agent State... OK</span>
-        </p>
+        <div class="relative z-10">
+            <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-amber-500"><path d="M2 12h10"/><path d="M9 4v16"/><path d="m3 9 3 3-3 3"/><path d="M14 8V7c0-1.1.9-2 2-2h6"/><path d="M14 12v1"/><path d="M14 16v1c0 1.1.9 2 2 2h6"/><path d="M22 3v18"/></svg>
+            </div>
+            <h3 class="text-2xl font-bold mb-3">Deep Observability</h3>
+            <p class="text-muted leading-relaxed max-w-lg">
+                Trace every thought, action, and tool call. Chorus provides built-in tracing and logging adapters for standard observability tools.
+            </p>
+        </div>
       </div>
 
     </div>

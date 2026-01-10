@@ -1,11 +1,10 @@
 ---
-import ThemeToggle from './ThemeToggle.astro';
 ---
 
 <section class="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background text-foreground transition-colors duration-300">
   <!-- Background Pattern -->
-  <div class="absolute inset-0 z-0 pointer-events-none opacity-[0.03] dark:opacity-[0.1]">
-    <div class="absolute inset-0 bg-[radial-gradient(#000000_1px,transparent_1px)] dark:bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-[size:16px_16px]"></div>
+  <div class="absolute inset-0 z-0 pointer-events-none opacity-[0.03]">
+    <div class="absolute inset-0 bg-[radial-gradient(#000000_1px,transparent_1px)] bg-[size:16px_16px]"></div>
   </div>
   <!-- Radial Fade -->
   <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50"></div>
@@ -18,7 +17,6 @@ import ThemeToggle from './ThemeToggle.astro';
       <div class="hidden sm:block">TOKENS/S: 432</div>
     </div>
     <div class="flex gap-6 items-center">
-      <ThemeToggle />
       <div class="hidden sm:block">COST/1K: $0.002</div>
       <div>REGION: US-EAST-1</div>
       <div>[SECURE]</div>
@@ -50,7 +48,7 @@ import ThemeToggle from './ThemeToggle.astro';
         
         <div class="relative z-10 space-y-8">
             <div class="flex justify-center">
-                <div class="inline-flex items-center gap-2 px-3 py-1 border border-emerald-500/20 bg-emerald-500/5 text-emerald-600 dark:text-emerald-400 text-xs font-mono tracking-wider uppercase">
+                <div class="inline-flex items-center gap-2 px-3 py-1 border border-emerald-500/20 bg-emerald-500/5 text-emerald-600 text-xs font-mono tracking-wider uppercase">
                     <span class="w-1.5 h-1.5 bg-emerald-500"></span>
                     <span>Orchestration Layer Ready</span>
                     <span class="text-muted/40">|</span>
@@ -61,7 +59,7 @@ import ThemeToggle from './ThemeToggle.astro';
             <!-- Heavy Display Text -->
             <h1 class="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tighter text-foreground uppercase leading-[0.9]">
                 Coordinate<br />
-                <span class="text-transparent bg-clip-text bg-gradient-to-b from-zinc-500 to-zinc-950 dark:from-zinc-300 dark:to-zinc-600">Intelligence</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-b from-zinc-500 to-zinc-950">Intelligence</span>
             </h1>
 
             <p class="max-w-xl mx-auto text-muted font-mono text-sm sm:text-base leading-relaxed border-l-2 border-emerald-500/50 pl-6 text-left">
