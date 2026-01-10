@@ -1,7 +1,7 @@
 ---
 import '@fontsource/inter';
 import '@fontsource/jetbrains-mono';
-import '../styles/global.css';
+import '../styles/main.css';
 
 interface Props {
 	title: string;
@@ -12,7 +12,7 @@ const { title, description = "The TypeScript framework for building agents." } =
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
@@ -21,7 +21,7 @@ const { title, description = "The TypeScript framework for building agents." } =
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body class="bg-background text-foreground antialiased selection:bg-primary/30 min-h-screen">
+	<body class="bg-background text-foreground antialiased selection:bg-primary/30 min-h-screen" style="background-color: #080808; color: #FAFAFA;">
 		<slot />
 	</body>
 </html>
