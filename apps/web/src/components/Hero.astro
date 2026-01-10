@@ -1,0 +1,107 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<section class="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background text-foreground transition-colors duration-300">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 z-0 pointer-events-none opacity-[0.03] dark:opacity-[0.1]">
+    <div class="absolute inset-0 bg-[radial-gradient(#000000_1px,transparent_1px)] dark:bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-[size:16px_16px]"></div>
+  </div>
+  <!-- Radial Fade -->
+  <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50"></div>
+
+  <!-- Top Technical Bar (HUD) -->
+  <div class="absolute top-0 left-0 right-0 z-20 border-b border-border bg-background/50 backdrop-blur-sm px-6 h-12 flex items-center justify-between font-mono text-[10px] sm:text-xs text-muted uppercase tracking-widest">
+    <div class="flex gap-6 items-center">
+      <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> SYS.ONLINE</div>
+      <div class="hidden sm:block">CTX: 128K</div>
+      <div class="hidden sm:block">TOKENS/S: 432</div>
+    </div>
+    <div class="flex gap-6 items-center">
+      <ThemeToggle />
+      <div class="hidden sm:block">COST/1K: $0.002</div>
+      <div>REGION: US-EAST-1</div>
+      <div>[SECURE]</div>
+    </div>
+  </div>
+
+  <!-- Side Rulers -->
+  <div class="absolute top-12 bottom-0 left-0 w-12 hidden lg:flex flex-col items-center py-6 border-r border-border z-10 select-none">
+    <div class="space-y-24 font-mono text-[10px] text-muted tracking-widest opacity-60">
+      <span class="-rotate-90 block">00</span>
+      <span class="-rotate-90 block">01</span>
+      <span class="-rotate-90 block">02</span>
+      <span class="-rotate-90 block">03</span>
+    </div>
+  </div>
+
+  <div class="absolute top-12 bottom-0 right-0 w-12 hidden lg:flex flex-col items-center py-6 border-l border-border z-10 select-none">
+     <div class="h-full w-px border-l border-dashed border-border opacity-50"></div>
+  </div>
+
+  <!-- Main Content Container -->
+  <div class="relative z-10 container mx-auto px-6 lg:px-24 pt-20">
+    
+    <!-- Floating "Window" Frame -->
+    <div class="relative max-w-5xl mx-auto">
+      
+      <!-- Inner Content Area -->
+      <div class="text-center relative">
+        
+        <div class="relative z-10 space-y-8">
+            <div class="flex justify-center">
+                <div class="inline-flex items-center gap-2 px-3 py-1 border border-emerald-500/20 bg-emerald-500/5 text-emerald-600 dark:text-emerald-400 text-xs font-mono tracking-wider uppercase">
+                    <span class="w-1.5 h-1.5 bg-emerald-500"></span>
+                    <span>Orchestration Layer Ready</span>
+                    <span class="text-muted/40">|</span>
+                    <span class="text-muted">v1.0.0-rc</span>
+                </div>
+            </div>
+
+            <!-- Heavy Display Text -->
+            <h1 class="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tighter text-foreground uppercase leading-[0.9]">
+                Coordinate<br />
+                <span class="text-transparent bg-clip-text bg-gradient-to-b from-zinc-500 to-zinc-950 dark:from-zinc-300 dark:to-zinc-600">Intelligence</span>
+            </h1>
+
+            <p class="max-w-xl mx-auto text-muted font-mono text-sm sm:text-base leading-relaxed border-l-2 border-emerald-500/50 pl-6 text-left">
+                // The mission control for autonomous agents.
+                <br />
+                Create, deploy, and observe multi-agent swarms with full type safety and zero friction.
+            </p>
+
+            <!-- Technical Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
+                <a href="#" class="relative inline-flex items-center justify-center h-12 px-8 min-w-[180px] bg-foreground text-background font-medium hover:opacity-90 transition-opacity duration-200 shadow-lg">
+                    Initialize System
+                </a>
+
+                <a href="#" class="relative inline-flex items-center justify-center h-12 px-8 min-w-[180px] border border-border bg-background text-foreground font-medium hover:bg-surface transition-colors duration-200">
+                    <span class="mr-2 text-emerald-500 font-mono">$</span> View Source
+                </a>
+            </div>
+        </div>
+      </div>
+      
+      <!-- Bottom Status Bar -->
+      <div class="grid grid-cols-4 gap-px bg-border mt-16 sm:mt-24 border border-border shadow-2xl relative z-20">
+        <div class="bg-surface p-4 text-center text-[10px] text-muted font-mono uppercase tracking-wider">
+            <span class="block text-foreground font-bold text-sm sm:text-base mb-1">2M+</span>
+            Context
+        </div>
+        <div class="bg-surface p-4 text-center text-[10px] text-muted font-mono uppercase tracking-wider">
+            <span class="block text-foreground font-bold text-sm sm:text-base mb-1">0.05s</span>
+            TTFT
+        </div>
+        <div class="bg-surface p-4 text-center text-[10px] text-muted font-mono uppercase tracking-wider">
+            <span class="block text-foreground font-bold text-sm sm:text-base mb-1">Any</span>
+            Model
+        </div>
+        <div class="bg-surface p-4 text-center text-[10px] text-muted font-mono uppercase tracking-wider">
+            <span class="block text-foreground font-bold text-sm sm:text-base mb-1">Local</span>
+            Ready
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

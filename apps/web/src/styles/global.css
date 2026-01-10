@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Mode - Clean, high contrast */
+    --color-background: 250, 250, 250;
+    /* Slightly off-white for softer look */
+    --color-foreground: 9, 9, 11;
+    /* Zinc 950 - stronger contrast */
+    --color-primary: 9, 9, 11;
+    /* Black for primary actions */
+    --color-border: 212, 212, 216;
+    /* Zinc 300 - slightly darker borders */
+    --color-muted: 82, 82, 91;
+    /* Zinc 600 - darker muted text */
+    --color-surface: 255, 255, 255;
+    /* Pure white for cards/surfaces */
+  }
+
+  .dark {
+    /* Dark Mode - Technical, high contrast */
+    --color-background: 0, 0, 0;
+    /* Pure Black */
+    --color-foreground: 250, 250, 250;
+    /* Zinc 50 */
+    --color-primary: 250, 250, 250;
+    /* White for primary actions */
+    --color-border: 39, 39, 42;
+    /* Zinc 800 - subtle borders */
+    --color-muted: 161, 161, 170;
+    /* Zinc 400 */
+    --color-surface: 9, 9, 11;
+    /* Zinc 950 for cards */
+  }
+
+  html {
+    scroll-behavior: smooth;
+    @apply bg-background text-foreground;
+  }
+
+  body {
+    @apply font-sans;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-mono tracking-tight;
+  }
+
+  /* Custom scrollbar for dark mode */
+  .dark ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .dark ::-webkit-scrollbar-track {
+    background: rgb(9, 9, 11);
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: rgb(39, 39, 42);
+    border-radius: 0;
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: rgb(63, 63, 70);
+  }
+}

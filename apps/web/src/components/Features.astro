@@ -1,0 +1,108 @@
+---
+const features = [
+  {
+    id: "MOD_01",
+    title: "Zero Lock-in",
+    description: "Inference provider agnostic protocol. Switch backends without code refactoring.",
+    status: "ACTIVE",
+    metric: "100% PORTABLE"
+  },
+  {
+    id: "MOD_02",
+    title: "Type Safe",
+    description: "End-to-end static analysis. Compile-time validation for all agent interactions.",
+    status: "SECURE",
+    metric: "0 RUNTIME ERRS"
+  },
+  {
+    id: "MOD_03",
+    title: "Multi-Agent",
+    description: "Native orchestration primitives. Sequential, hierarchical, and parallel execution patterns.",
+    status: "READY",
+    metric: "UNLIMITED NODES"
+  },
+  {
+    id: "MOD_04",
+    title: "Debug Trace",
+    description: "Visual execution timeline. Inspect internal thought processes and state transitions.",
+    status: "ONLINE",
+    metric: "FULL VISIBILITY"
+  },
+  {
+    id: "MOD_05",
+    title: "Unit Testing",
+    description: "First-class testing mocks. Assert deterministic behaviors for non-deterministic agents.",
+    status: "PASSED",
+    metric: "TEST COVERAGE"
+  },
+  {
+    id: "MOD_06",
+    title: "Minimal API",
+    description: "Low-overhead surface area. Learn the complete framework in under 15 minutes.",
+    status: "OPTIMIZED",
+    metric: "< 2KB GZIPPED"
+  }
+];
+---
+
+<section class="py-32 bg-background border-b border-border relative overflow-hidden transition-colors duration-300">
+    <!-- Background Texture -->
+    <div class="absolute inset-0 z-0 opacity-[0.02] dark:opacity-[0.05] bg-[radial-gradient(#000000_1px,transparent_1px)] dark:bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-[size:16px_16px]"></div>
+
+  <div class="mx-auto max-w-7xl px-6 relative z-10">
+    <div class="mb-12 flex items-end justify-between border-b border-border pb-6">
+        <div>
+             <h2 class="text-3xl font-bold text-foreground md:text-5xl font-mono uppercase tracking-tight">System Manifest</h2>
+             <p class="text-muted font-mono text-sm mt-2 tracking-widest">CORE CAPABILITIES // V1.0.0</p>
+        </div>
+        <div class="text-right hidden sm:block">
+            <div class="font-mono text-xs text-muted tracking-widest">MODULES LOADED</div>
+            <div class="font-mono text-xl text-foreground font-bold">06 / 06</div>
+        </div>
+    </div>
+
+    <!-- Technical List Layout -->
+    <div class="border border-border bg-background relative shadow-lg">
+        <div class="hidden md:grid grid-cols-12 gap-4 p-4 border-b border-border bg-surface font-mono text-[10px] text-muted uppercase tracking-widest select-none">
+            <div class="col-span-2">ID</div>
+            <div class="col-span-3">Module</div>
+            <div class="col-span-5">Description</div>
+            <div class="col-span-2 text-right">Metric</div>
+        </div>
+
+        <div class="divide-y divide-border">
+          {features.map((feature) => (
+            <div class="group grid grid-cols-1 md:grid-cols-12 gap-4 p-4 md:p-6 items-center hover:bg-surface transition-colors">
+              <!-- ID & Status Mobile -->
+              <div class="col-span-1 md:col-span-2 flex items-center gap-3">
+                 <div class="w-1.5 h-1.5 bg-emerald-500 opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                 <span class="font-mono text-xs text-muted group-hover:text-emerald-600 dark:group-hover:text-emerald-500 transition-colors">{feature.id}</span>
+              </div>
+
+              <!-- Title -->
+              <div class="col-span-1 md:col-span-3">
+                 <h3 class="text-lg font-bold text-foreground font-mono uppercase tracking-tight">{feature.title}</h3>
+                 <div class="md:hidden mt-1 text-[10px] text-emerald-600 dark:text-emerald-500 font-mono flex items-center gap-1">
+                    <span class="w-1 h-1 bg-emerald-500"></span> {feature.status}
+                 </div>
+              </div>
+
+              <!-- Description -->
+              <div class="col-span-1 md:col-span-5">
+                <p class="text-muted text-sm leading-relaxed">
+                    {feature.description}
+                </p>
+              </div>
+
+              <!-- Metric -->
+              <div class="col-span-1 md:col-span-2 md:text-right">
+                  <div class="inline-block border border-border px-2 py-1 font-mono text-[10px] text-muted bg-surface group-hover:border-emerald-500/50 group-hover:text-emerald-600 dark:group-hover:text-emerald-500 transition-colors">
+                    {feature.metric}
+                  </div>
+              </div>
+            </div>
+          ))}
+        </div>
+    </div>
+  </div>
+</section>

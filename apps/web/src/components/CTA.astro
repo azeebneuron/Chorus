@@ -1,0 +1,73 @@
+---
+---
+
+<section class="py-32 bg-background text-center relative overflow-hidden border-b border-border transition-colors duration-300">
+  <!-- Grid Background -->
+    <div class="absolute inset-0 z-0 pointer-events-none opacity-[0.02] dark:opacity-[0.05]">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#000000_1px,transparent_1px),linear-gradient(to_bottom,#000000_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+  </div>
+
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 blur-[100px] pointer-events-none"></div>
+
+  <div class="relative z-10 mx-auto max-w-4xl px-6">
+    <div class="inline-flex items-center gap-2 mb-8 border border-emerald-500/30 bg-emerald-500/5 px-4 py-1.5">
+        <span class="w-1.5 h-1.5 bg-emerald-500 animate-pulse"></span>
+        <span class="font-mono text-xs text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">System Ready</span>
+    </div>
+
+    <h2 class="mb-8 text-4xl font-black text-foreground md:text-6xl tracking-tighter uppercase leading-none">
+      Terminate<br/><span class="text-muted/50">Inefficiency</span>
+    </h2>
+    <p class="mb-12 text-xl text-muted md:text-2xl font-mono">
+      Initialize your first agent swarm today.
+    </p>
+
+    <!-- Command Box -->
+    <div class="mx-auto mb-12 max-w-lg">
+        <div class="bg-surface border border-border p-2 flex items-center gap-4 group hover:border-emerald-500/50 transition-colors relative shadow-lg">
+            <div class="bg-background border border-border px-3 py-2 text-muted font-mono text-sm select-none">$</div>
+            <code class="font-mono text-emerald-600 dark:text-emerald-400 text-sm flex-grow text-left">pnpm add @chorus/core</code>
+            <button id="copy-btn" class="text-muted hover:text-foreground transition-colors p-2 cursor-pointer" aria-label="Copy command">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            </button>
+
+            <!-- Corner accents -->
+            <div class="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-foreground/10 group-hover:border-emerald-500/50 transition-colors"></div>
+            <div class="absolute -bottom-1 -right-1 w-2 h-2 border-b border-r border-foreground/10 group-hover:border-emerald-500/50 transition-colors"></div>
+        </div>
+    </div>
+
+    <div class="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
+      <a
+        href="#"
+        class="inline-flex h-14 w-full sm:w-auto min-w-[200px] items-center justify-center bg-foreground text-background font-bold uppercase tracking-wide hover:opacity-90 transition-opacity duration-200"
+      >
+        Read Documentation
+      </a>
+      <a
+        href="#"
+        class="inline-flex h-14 w-full sm:w-auto min-w-[200px] items-center justify-center border border-border bg-background text-foreground font-mono uppercase tracking-wide hover:bg-surface transition-colors duration-200"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="mr-2" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        Star on GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const copyBtn = document.getElementById('copy-btn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText('pnpm add @chorus/core');
+          copyBtn.classList.add('text-emerald-500');
+          setTimeout(() => copyBtn.classList.remove('text-emerald-500'), 1000);
+        } catch (err) {
+          console.error('Failed to copy:', err);
+        }
+      });
+    }
+  });
+</script>
