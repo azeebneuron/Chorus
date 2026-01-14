@@ -1,0 +1,19 @@
+{
+  "name": "chorus-examples",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Examples for the Chorus multi-agent framework",
+  "type": "module",
+  "scripts": {
+    "simple": "tsx simple-agent.ts",
+    "tools": "tsx agent-with-tools.ts",
+    "hooks": "tsx agent-with-hooks.ts"
+  },
+  "dependencies": {
+    "@chorus/core": "workspace:*",
+    "@chorus/gemini": "workspace:*"
+  },
+  "devDependencies": {
+    "tsx": "^4.7.0"
+  }
+}
