@@ -1,0 +1,297 @@
+---
+const tabs = [
+  { id: 'install', label: 'Installation' },
+  { id: 'single', label: 'Single Agent' },
+  { id: 'multi', label: 'Multi-Agent' },
+];
+
+const installCode = `pnpm add @chorus/core @chorus/gemini`;
+
+const singleAgentCode = `import { agent, defineTool } from "@chorus/core";
+import { gemini } from "@chorus/gemini";
+
+// Create a provider
+const provider = gemini({ apiKey: process.env.GEMINI_API_KEY });
+
+// Define a tool
+const searchTool = defineTool({
+  name: "search",
+  description: "Search the web for information",
+  parameters: {
+    type: "object",
+    properties: {
+      query: { type: "string", description: "Search query" }
+    },
+    required: ["query"]
+  },
+  execute: async ({ query }) => {
+    // Your search implementation
+    return \`Results for: \${query}\`;
+  }
+});
+
+// Create your agent
+const assistant = agent()
+  .name("assistant")
+  .systemPrompt("You are a helpful assistant.")
+  .provider(provider)
+  .tools([searchTool])
+  .build();
+
+// Run it
+const result = await assistant.run("What is the weather today?");
+console.log(result.response);`;
+
+const multiAgentCode = `import { agent, ensemble, conductor, createContext } from "@chorus/core";
+import { gemini } from "@chorus/gemini";
+
+const provider = gemini({ apiKey: process.env.GEMINI_API_KEY });
+
+// Create specialized agents
+const researcher = agent()
+  .name("researcher")
+  .systemPrompt("You research topics thoroughly.")
+  .provider(provider)
+  .build();
+
+const writer = agent()
+  .name("writer")
+  .systemPrompt("You write clear, engaging content.")
+  .provider(provider)
+  .build();
+
+const reviewer = agent()
+  .name("reviewer")
+  .systemPrompt("You review and improve content quality.")
+  .provider(provider)
+  .build();
+
+// Create an ensemble
+const team = ensemble()
+  .name("content-team")
+  .add(researcher, { role: "Research" })
+  .add(writer, { role: "Write" })
+  .add(reviewer, { role: "Review" })
+  .build();
+
+// Create a sequential conductor
+const seq = conductor()
+  .strategy("sequential")
+  .order(["researcher", "writer", "reviewer"])
+  .build();
+
+// Run the ensemble
+const result = await team.run("Write an article about AI agents", {
+  conductor: seq,
+  context: createContext(),
+});
+
+console.log(result.response);
+console.log("Trace:", result.trace);`;
+
+// Simple syntax highlighting function (server-side)
+function highlightCode(code: string): string {
+  const keywords = ['import', 'from', 'const', 'await', 'async', 'return', 'export'];
+
+  let result = code
+    // Escape HTML
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+
+  // Comments (must be before strings)
+  result = result.replace(/\/\/.*/g, '<span class="text-white/30">$&</span>');
+
+  // Strings
+  result = result.replace(/"([^"\\]|\\.)*"/g, '<span class="text-emerald-400">$&</span>');
+  result = result.replace(/`([^`\\]|\\.)*`/g, '<span class="text-emerald-400">$&</span>');
+
+  // Keywords
+  keywords.forEach(kw => {
+    result = result.replace(
+      new RegExp(`\\b${kw}\\b`, 'g'),
+      `<span class="text-purple-400">${kw}</span>`
+    );
+  });
+
+  return result;
+}
+
+const highlightedSingleAgent = highlightCode(singleAgentCode);
+const highlightedMultiAgent = highlightCode(multiAgentCode);
+---
+
+<section class="py-24 bg-surface border-b border-border relative overflow-hidden transition-colors duration-300">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
+        <span class="font-mono text-xs text-blue-400 uppercase tracking-widest">Getting Started</span>
+      </div>
+      <h2 class="text-3xl font-bold text-foreground md:text-5xl mb-4 tracking-tight">
+        Build in minutes.
+      </h2>
+      <p class="text-lg text-muted max-w-2xl mx-auto">
+        From installation to multi-agent orchestration in under 5 minutes.
+      </p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex justify-center gap-2 mb-8">
+      {tabs.map((tab, index) => (
+        <button
+          data-tab={tab.id}
+          class:list={[
+            "tab-btn px-4 py-2 font-mono text-sm rounded-md transition-all",
+            index === 0
+              ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+              : "text-muted hover:text-foreground border border-transparent hover:border-border"
+          ]}
+        >
+          {tab.label}
+        </button>
+      ))}
+    </div>
+
+    <!-- Content Panels -->
+    <div class="max-w-4xl mx-auto">
+      <!-- Installation Panel -->
+      <div id="install-panel" class="tab-panel">
+        <div class="bg-[#1e1e1e] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
+          <div class="flex items-center justify-between px-4 py-3 border-b border-white/10">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+              <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+              <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+            </div>
+            <span class="text-[12px] font-mono text-white/40">terminal</span>
+          </div>
+          <div class="p-6 font-mono text-sm">
+            <div class="flex items-center gap-3">
+              <span class="text-emerald-400">$</span>
+              <code class="text-white/90">{installCode}</code>
+            </div>
+            <div class="mt-4 text-white/40 text-xs">
+              # Or use npm / yarn<br/>
+              # npm install @chorus/core @chorus/gemini<br/>
+              # yarn add @chorus/core @chorus/gemini
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 grid gap-4 sm:grid-cols-3">
+          <div class="border border-border rounded-lg p-4 bg-background">
+            <div class="font-mono text-xs text-emerald-500 mb-2">01</div>
+            <div class="font-semibold text-foreground mb-1">Core Package</div>
+            <div class="text-sm text-muted">Agent, tools, and orchestration primitives</div>
+          </div>
+          <div class="border border-border rounded-lg p-4 bg-background">
+            <div class="font-mono text-xs text-emerald-500 mb-2">02</div>
+            <div class="font-semibold text-foreground mb-1">Provider Package</div>
+            <div class="text-sm text-muted">Gemini, OpenAI, Anthropic adapters</div>
+          </div>
+          <div class="border border-border rounded-lg p-4 bg-background">
+            <div class="font-mono text-xs text-emerald-500 mb-2">03</div>
+            <div class="font-semibold text-foreground mb-1">Zero Config</div>
+            <div class="text-sm text-muted">TypeScript-first, no setup required</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Single Agent Panel -->
+      <div id="single-panel" class="tab-panel hidden">
+        <div class="bg-[#1e1e1e] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
+          <div class="flex items-center justify-between px-4 py-3 border-b border-white/10">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+              <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+              <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+            </div>
+            <span class="text-[12px] font-mono text-white/40">agent.ts</span>
+          </div>
+          <div class="p-6 overflow-x-auto">
+            <pre class="font-mono text-sm text-white/90 leading-relaxed whitespace-pre"><code set:html={highlightedSingleAgent} /></pre>
+          </div>
+        </div>
+
+        <div class="mt-6 border border-border rounded-lg p-4 bg-background">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
+              <span class="text-emerald-400 text-sm">?</span>
+            </div>
+            <div>
+              <div class="font-semibold text-foreground mb-1">How tools work</div>
+              <div class="text-sm text-muted">
+                Tools are functions that agents can call. Define them with JSON Schema parameters,
+                and the agent will automatically decide when and how to use them based on the conversation.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Multi-Agent Panel -->
+      <div id="multi-panel" class="tab-panel hidden">
+        <div class="bg-[#1e1e1e] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
+          <div class="flex items-center justify-between px-4 py-3 border-b border-white/10">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+              <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+              <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+            </div>
+            <span class="text-[12px] font-mono text-white/40">team.ts</span>
+          </div>
+          <div class="p-6 overflow-x-auto">
+            <pre class="font-mono text-sm text-white/90 leading-relaxed whitespace-pre"><code set:html={highlightedMultiAgent} /></pre>
+          </div>
+        </div>
+
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+          <div class="border border-border rounded-lg p-4 bg-background">
+            <div class="font-semibold text-foreground mb-2">5 Orchestration Strategies</div>
+            <ul class="text-sm text-muted space-y-1">
+              <li><span class="text-emerald-500">Sequential</span> - A &rarr; B &rarr; C pipeline</li>
+              <li><span class="text-emerald-500">Parallel</span> - Run all, merge results</li>
+              <li><span class="text-emerald-500">Hierarchical</span> - Manager delegates to workers</li>
+              <li><span class="text-emerald-500">Debate</span> - Agents argue to consensus</li>
+              <li><span class="text-emerald-500">Voting</span> - Democratic decisions</li>
+            </ul>
+          </div>
+          <div class="border border-border rounded-lg p-4 bg-background">
+            <div class="font-semibold text-foreground mb-2">Full Observability</div>
+            <ul class="text-sm text-muted space-y-1">
+              <li>Execution trace with timing</li>
+              <li>Per-agent message history</li>
+              <li>Token usage tracking</li>
+              <li>Lifecycle hooks for debugging</li>
+              <li>Snapshot &amp; restore context</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  // Tab switching logic
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabId = btn.getAttribute('data-tab');
+
+      // Update button states
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('bg-emerald-500/20', 'text-emerald-400', 'border-emerald-500/30');
+        b.classList.add('text-muted', 'border-transparent');
+      });
+      btn.classList.add('bg-emerald-500/20', 'text-emerald-400', 'border-emerald-500/30');
+      btn.classList.remove('text-muted', 'border-transparent');
+
+      // Update panel visibility
+      document.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.classList.add('hidden');
+      });
+      document.getElementById(tabId + '-panel')?.classList.remove('hidden');
+    });
+  });
+</script>

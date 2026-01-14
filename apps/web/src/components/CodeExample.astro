@@ -55,7 +55,7 @@
             <div class="flex overflow-hidden">
                 <!-- Line Numbers -->
                 <div class="w-10 sm:w-12 py-6 text-right pr-3 text-white/20 select-none border-r border-white/5 leading-[1.75] text-[11px] shrink-0 bg-[#1e1e1e]">
-                    1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12
+                    1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15
                 </div>
 
                 <!-- Code Content Wrapper with horizontal scroll -->
@@ -141,15 +141,18 @@
   const code = `im` + `port { agent } from "@chorus/core";
 im` + `port { gemini } from "@chorus/gemini";
 
+const provider = gemini({ apiKey: "..." });
+
 // define your agent
 const researcher = agent()
   .name("researcher")
-  .model(gemini("gemini-pro"))
-  .system("You are a senior analyst.")
+  .systemPrompt("You are a senior analyst.")
+  .provider(provider)
   .build();
 
 // run it
-await researcher.run("Analyze Q4 trends");`;
+const result = await researcher.run("Analyze Q4");
+console.log(result.response);`;
 
   const typewriter = document.getElementById('typewriter');
   const cursor = document.getElementById('cursor');

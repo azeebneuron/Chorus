@@ -49,9 +49,65 @@ export type {
   AgentResult,
   AgentContext,
   AgentHooks,
+  // Ensemble (Multi-Agent)
+  AgentId,
+  AgentRole,
+  Ensemble,
+  EnsembleConfig,
+  EnsembleResult,
+  EnsembleRunOptions,
+  EnsembleHooks,
+  ExecutionTrace,
+  ExecutionStep,
+  // Conductor (Orchestration)
+  Conductor,
+  ConductorConfig,
+  ConductorHooks,
+  ConductorRunOptions,
+  OrchestrationStrategy,
+  SequentialConfig,
+  ParallelConfig,
+  HierarchicalConfig,
+  DebateConfig,
+  VotingConfig,
+  CustomConfig,
+  AnyConductorConfig,
+  ResultMerger,
+  DelegationStrategy,
+  // Shared Context
+  SharedContext,
+  ContextConfig,
+  ContextSnapshot,
+  // Handoff
+  HandoffRequest,
+  HandoffResponse,
+  HandoffHandler,
+  HandoffToolConfig,
+  HandoffRegistry,
 } from "./types/index.js";
 
 // Function exports
 export { system, user, assistant } from "./types/message.js";
 export { defineTool } from "./types/tool.js";
 export { createAgent, agent, AgentBuilder } from "./agent.js";
+
+// Multi-agent exports
+export { createEnsemble, ensemble, EnsembleBuilder } from "./ensemble.js";
+export { createContext } from "./context.js";
+export {
+  createConductor,
+  conductor,
+  ConductorBuilder,
+  createSequentialConductor,
+  createParallelConductor,
+  createHierarchicalConductor,
+  createDebateConductor,
+  createVotingConductor,
+} from "./conductor/index.js";
+export {
+  createHandoffRegistry,
+  createHandoffTool,
+  createSimpleHandoffHandler,
+  createAdvancedHandoffHandler,
+  createHandoffChain,
+} from "./handoff.js";
