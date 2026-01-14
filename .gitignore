@@ -32,7 +32,7 @@ pnpm-debug.log*
 coverage/
 
 # Package manager
-pnpm-lock.yaml
+# pnpm-lock.yaml  # Keep lock file for CI/Vercel
 
 # Markdown files
 *.md
