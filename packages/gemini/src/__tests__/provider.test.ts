@@ -1,15 +1,22 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { createGeminiProvider, gemini } from "../provider.js";
 
-// Mock the Google GenAI SDK
-vi.mock("@google/genai", () => {
-  return {
-    GoogleGenAI: vi.fn().mockImplementation(() => ({
+// Create hoisted mock for GoogleGenAI constructor
+const mockGoogleGenAI = vi.hoisted(() =>
+  vi.fn(function () {
+    return {
       models: {
         generateContent: vi.fn(),
         generateContentStream: vi.fn(),
       },
-    })),
+    };
+  })
+);
+
+// Mock the Google GenAI SDK
+vi.mock("@google/genai", () => {
+  return {
+    GoogleGenAI: mockGoogleGenAI,
   };
 });
 
@@ -33,7 +40,6 @@ describe("createGeminiProvider", () => {
   });
 
   it("uses default model when not specified", async () => {
-    const { GoogleGenAI } = await import("@google/genai");
     const mockGenerateContent = vi.fn().mockResolvedValue({
       candidates: [
         {
@@ -51,11 +57,13 @@ describe("createGeminiProvider", () => {
       },
     });
 
-    (GoogleGenAI as unknown as ReturnType<typeof vi.fn>).mockImplementation(() => ({
-      models: {
-        generateContent: mockGenerateContent,
-      },
-    }));
+    mockGoogleGenAI.mockImplementation(function () {
+      return {
+        models: {
+          generateContent: mockGenerateContent,
+        },
+      };
+    });
 
     const provider = createGeminiProvider({ apiKey: "test-key" });
 
@@ -74,7 +82,6 @@ describe("createGeminiProvider", () => {
   });
 
   it("uses custom model when specified", async () => {
-    const { GoogleGenAI } = await import("@google/genai");
     const mockGenerateContent = vi.fn().mockResolvedValue({
       candidates: [
         {
@@ -87,11 +94,13 @@ describe("createGeminiProvider", () => {
       ],
     });
 
-    (GoogleGenAI as unknown as ReturnType<typeof vi.fn>).mockImplementation(() => ({
-      models: {
-        generateContent: mockGenerateContent,
-      },
-    }));
+    mockGoogleGenAI.mockImplementation(function () {
+      return {
+        models: {
+          generateContent: mockGenerateContent,
+        },
+      };
+    });
 
     const provider = createGeminiProvider({
       apiKey: "test-key",
@@ -110,7 +119,6 @@ describe("createGeminiProvider", () => {
   });
 
   it("transforms messages correctly", async () => {
-    const { GoogleGenAI } = await import("@google/genai");
     const mockGenerateContent = vi.fn().mockResolvedValue({
       candidates: [
         {
@@ -123,11 +131,13 @@ describe("createGeminiProvider", () => {
       ],
     });
 
-    (GoogleGenAI as unknown as ReturnType<typeof vi.fn>).mockImplementation(() => ({
-      models: {
-        generateContent: mockGenerateContent,
-      },
-    }));
+    mockGoogleGenAI.mockImplementation(function () {
+      return {
+        models: {
+          generateContent: mockGenerateContent,
+        },
+      };
+    });
 
     const provider = createGeminiProvider({ apiKey: "test-key" });
 
@@ -164,7 +174,6 @@ describe("createGeminiProvider", () => {
   });
 
   it("handles generation config", async () => {
-    const { GoogleGenAI } = await import("@google/genai");
     const mockGenerateContent = vi.fn().mockResolvedValue({
       candidates: [
         {
@@ -174,11 +183,13 @@ describe("createGeminiProvider", () => {
       ],
     });
 
-    (GoogleGenAI as unknown as ReturnType<typeof vi.fn>).mockImplementation(() => ({
-      models: {
-        generateContent: mockGenerateContent,
-      },
-    }));
+    mockGoogleGenAI.mockImplementation(function () {
+      return {
+        models: {
+          generateContent: mockGenerateContent,
+        },
+      };
+    });
 
     const provider = createGeminiProvider({ apiKey: "test-key" });
 
@@ -196,7 +207,6 @@ describe("createGeminiProvider", () => {
   });
 
   it("transforms tools correctly", async () => {
-    const { GoogleGenAI } = await import("@google/genai");
     const mockGenerateContent = vi.fn().mockResolvedValue({
       candidates: [
         {
@@ -206,11 +216,13 @@ describe("createGeminiProvider", () => {
       ],
     });
 
-    (GoogleGenAI as unknown as ReturnType<typeof vi.fn>).mockImplementation(() => ({
-      models: {
-        generateContent: mockGenerateContent,
-      },
-    }));
+    mockGoogleGenAI.mockImplementation(function () {
+      return {
+        models: {
+          generateContent: mockGenerateContent,
+        },
+      };
+    });
 
     const provider = createGeminiProvider({ apiKey: "test-key" });
 
@@ -241,7 +253,6 @@ describe("createGeminiProvider", () => {
   });
 
   it("parses response with function calls", async () => {
-    const { GoogleGenAI } = await import("@google/genai");
     const mockGenerateContent = vi.fn().mockResolvedValue({
       candidates: [
         {
@@ -266,11 +277,13 @@ describe("createGeminiProvider", () => {
       },
     });
 
-    (GoogleGenAI as unknown as ReturnType<typeof vi.fn>).mockImplementation(() => ({
-      models: {
-        generateContent: mockGenerateContent,
-      },
-    }));
+    mockGoogleGenAI.mockImplementation(function () {
+      return {
+        models: {
+          generateContent: mockGenerateContent,
+        },
+      };
+    });
 
     const provider = createGeminiProvider({ apiKey: "test-key" });
 
@@ -289,7 +302,6 @@ describe("createGeminiProvider", () => {
   });
 
   it("handles MAX_TOKENS finish reason", async () => {
-    const { GoogleGenAI } = await import("@google/genai");
     const mockGenerateContent = vi.fn().mockResolvedValue({
       candidates: [
         {
@@ -299,11 +311,13 @@ describe("createGeminiProvider", () => {
       ],
     });
 
-    (GoogleGenAI as unknown as ReturnType<typeof vi.fn>).mockImplementation(() => ({
-      models: {
-        generateContent: mockGenerateContent,
-      },
-    }));
+    mockGoogleGenAI.mockImplementation(function () {
+      return {
+        models: {
+          generateContent: mockGenerateContent,
+        },
+      };
+    });
 
     const provider = createGeminiProvider({ apiKey: "test-key" });
 
@@ -315,7 +329,6 @@ describe("createGeminiProvider", () => {
   });
 
   it("handles SAFETY finish reason", async () => {
-    const { GoogleGenAI } = await import("@google/genai");
     const mockGenerateContent = vi.fn().mockResolvedValue({
       candidates: [
         {
@@ -325,11 +338,13 @@ describe("createGeminiProvider", () => {
       ],
     });
 
-    (GoogleGenAI as unknown as ReturnType<typeof vi.fn>).mockImplementation(() => ({
-      models: {
-        generateContent: mockGenerateContent,
-      },
-    }));
+    mockGoogleGenAI.mockImplementation(function () {
+      return {
+        models: {
+          generateContent: mockGenerateContent,
+        },
+      };
+    });
 
     const provider = createGeminiProvider({ apiKey: "test-key" });
 
@@ -341,16 +356,17 @@ describe("createGeminiProvider", () => {
   });
 
   it("throws when no response content", async () => {
-    const { GoogleGenAI } = await import("@google/genai");
     const mockGenerateContent = vi.fn().mockResolvedValue({
       candidates: [],
     });
 
-    (GoogleGenAI as unknown as ReturnType<typeof vi.fn>).mockImplementation(() => ({
-      models: {
-        generateContent: mockGenerateContent,
-      },
-    }));
+    mockGoogleGenAI.mockImplementation(function () {
+      return {
+        models: {
+          generateContent: mockGenerateContent,
+        },
+      };
+    });
 
     const provider = createGeminiProvider({ apiKey: "test-key" });
 
