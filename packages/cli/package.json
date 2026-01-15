@@ -1,0 +1,68 @@
+{
+  "name": "@chorus/cli",
+  "version": "0.1.0",
+  "description": "CLI and DevTools for the Chorus multi-agent framework",
+  "type": "module",
+  "bin": {
+    "chorus": "./dist/bin/chorus.js"
+  },
+  "main": "./dist/src/index.js",
+  "module": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "chokidar": "^4.0.0",
+    "cli-table3": "^0.6.5",
+    "commander": "^12.1.0",
+    "esbuild": "^0.24.0",
+    "esbuild-register": "^3.6.0",
+    "figures": "^6.1.0",
+    "ink": "^5.0.1",
+    "ink-select-input": "^6.0.0",
+    "ink-spinner": "^5.0.0",
+    "ora": "^8.1.0",
+    "prompts": "^2.4.2",
+    "react": "^18.3.1",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@chorus/core": "workspace:*",
+    "@types/prompts": "^2.4.9",
+    "@types/react": "^18.3.0",
+    "ink-testing-library": "^4.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "peerDependencies": {
+    "@chorus/core": "workspace:*"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "cli",
+    "devtools",
+    "llm",
+    "multi-agent",
+    "chorus",
+    "typescript"
+  ],
+  "license": "MIT"
+}
