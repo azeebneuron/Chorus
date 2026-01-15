@@ -111,3 +111,11 @@ export {
   createAdvancedHandoffHandler,
   createHandoffChain,
 } from "./handoff.js";
+
+// Validation utilities
+export {
+  validateJsonSchema,
+  validateInput,
+  sanitizeError,
+  type ValidationResult,
+} from "./validation.js";

@@ -21,7 +21,14 @@ type InitOptions = {
   noInstall?: boolean;
 };
 
-const TEMPLATES = {
+type TemplateConfig = {
+  name: string;
+  description: string;
+  code: string;
+  dependencies?: Record<string, string>;
+};
+
+const TEMPLATES: Record<string, TemplateConfig> = {
   "basic-agent": {
     name: "Basic Agent",
     description: "A simple agent with a system prompt",
@@ -83,14 +90,18 @@ export const team = ensemble()
   "with-tools": {
     name: "Agent with Tools",
     description: "An agent that can use custom tools",
+    dependencies: {
+      "mathjs": "^13.0.0",
+    },
     code: `import { agent, defineTool } from "@chorus/core";
 import { gemini } from "@chorus/gemini";
+import { evaluate } from "mathjs";
 
 const provider = gemini({
   apiKey: process.env.GEMINI_API_KEY!,
 });
 
-// Define a custom tool
+// Define a custom tool using mathjs for safe expression evaluation
 const calculatorTool = defineTool({
   name: "calculator",
   description: "Perform mathematical calculations",
@@ -99,18 +110,19 @@ const calculatorTool = defineTool({
     properties: {
       expression: {
         type: "string",
-        description: "Mathematical expression to evaluate (e.g., '2 + 2')",
+        description: "Mathematical expression to evaluate (e.g., '2 + 2', 'sqrt(16)', '10% of 250')",
       },
     },
     required: ["expression"],
   },
   execute: async ({ expression }) => {
     try {
-      // Simple eval for demo - use a proper math library in production
-      const result = Function(\`"use strict"; return (\${expression})\`)();
+      // Using mathjs for safe mathematical expression evaluation
+      // This prevents code injection unlike unsafe alternatives
+      const result = evaluate(expression);
       return String(result);
-    } catch {
-      return "Error: Invalid expression";
+    } catch (error) {
+      return \`Error: \${error instanceof Error ? error.message : "Invalid expression"}\`;
     }
   },
 });
@@ -195,12 +207,11 @@ export const initCommand = new Command("init")
 
       const template = options.template ?? answers.template ?? "basic-agent";
 
-      if (!TEMPLATES[template as keyof typeof TEMPLATES]) {
+      const templateConfig = TEMPLATES[template];
+      if (!templateConfig) {
         logger.error(`Unknown template: ${template}`);
         process.exit(1);
       }
-
-      const templateConfig = TEMPLATES[template as keyof typeof TEMPLATES];
 
       // Create directory structure
       spinner.start("Creating project structure...");
@@ -212,7 +223,7 @@ export const initCommand = new Command("init")
       const srcDir = join(targetDir, "src");
       mkdirSync(srcDir, { recursive: true });
 
-      // Create package.json
+      // Create package.json with template-specific dependencies
       const packageJson = {
         name: projectName,
         version: "0.1.0",
@@ -225,6 +236,7 @@ export const initCommand = new Command("init")
         dependencies: {
           "@chorus/core": "^0.1.0",
           "@chorus/gemini": "^0.1.0",
+          ...templateConfig.dependencies,
         },
         devDependencies: {
           "@chorus/cli": "^0.1.0",

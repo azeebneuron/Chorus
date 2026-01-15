@@ -28,6 +28,10 @@ export type AgentConfig = {
   maxTokens?: number;
   /** Maximum iterations for tool use loop */
   maxIterations?: number;
+  /** Maximum input length in characters (default: 100000) */
+  maxInputLength?: number;
+  /** Tool execution timeout in milliseconds (default: 30000) */
+  toolTimeout?: number;
 };
 
 /**

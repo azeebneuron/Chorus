@@ -9,6 +9,7 @@
 
 import { agent, defineTool } from "@chorus/core";
 import { gemini } from "@chorus/gemini";
+import { evaluate } from "mathjs";
 
 // Create a Gemini provider
 const provider = gemini({
@@ -50,28 +51,28 @@ const getWeather = defineTool({
   },
 });
 
-// Define a calculator tool
+// Define a calculator tool using mathjs for safe expression evaluation
 const calculate = defineTool({
   name: "calculate",
-  description: "Performs basic mathematical calculations",
+  description: "Performs mathematical calculations including basic arithmetic, percentages, and functions",
   parameters: {
     type: "object",
     properties: {
       expression: {
         type: "string",
-        description: "A mathematical expression like '2 + 2' or '10 * 5'",
+        description: "A mathematical expression like '2 + 2', '10 * 5', 'sqrt(16)', or '15% of 250'",
       },
     },
     required: ["expression"],
   },
   execute: ({ expression }) => {
     try {
-      // Simple eval for demo - use a proper math parser in production
-      const sanitized = expression.replace(/[^0-9+\-*/().%\s]/g, "");
-      const result = Function(`"use strict"; return (${sanitized})`)();
+      // Using mathjs for safe mathematical expression evaluation
+      // This prevents code injection unlike unsafe alternatives
+      const result = evaluate(expression);
       return { expression, result };
-    } catch {
-      return { expression, error: "Could not evaluate expression" };
+    } catch (error) {
+      return { expression, error: error instanceof Error ? error.message : "Could not evaluate expression" };
     }
   },
 });

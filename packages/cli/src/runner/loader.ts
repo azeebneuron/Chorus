@@ -3,8 +3,8 @@
  */
 
 import { register } from "esbuild-register/dist/node.js";
-import { resolve, extname } from "path";
-import { existsSync } from "fs";
+import { resolve, extname, relative } from "path";
+import { existsSync, lstatSync, realpathSync } from "fs";
 import type { Agent, Ensemble } from "@chorus/core";
 
 export type LoadedModule = {
@@ -55,10 +55,42 @@ function isEnsemble(obj: unknown): obj is Ensemble {
 }
 
 /**
+ * Validate that a path doesn't escape the allowed directory
+ */
+function validatePathSecurity(absolutePath: string, baseDir: string): void {
+  // Resolve the real path to handle symlinks
+  let realPath: string;
+  try {
+    realPath = realpathSync(absolutePath);
+  } catch {
+    // File doesn't exist yet or can't be resolved
+    realPath = absolutePath;
+  }
+
+  // Check the resolved path starts with the base directory
+  const relativePath = relative(baseDir, realPath);
+  if (relativePath.startsWith("..") || relativePath.startsWith("/")) {
+    throw new Error(`Path traversal detected: cannot load files outside of ${baseDir}`);
+  }
+
+  // Check it's a regular file (not a directory or device)
+  if (existsSync(absolutePath)) {
+    const stat = lstatSync(absolutePath);
+    if (!stat.isFile()) {
+      throw new Error(`Not a regular file: ${absolutePath}`);
+    }
+  }
+}
+
+/**
  * Load a TypeScript file and extract agent/ensemble exports
  */
 export async function loadModule(filePath: string): Promise<LoadedModule> {
-  const absolutePath = resolve(process.cwd(), filePath);
+  const cwd = process.cwd();
+  const absolutePath = resolve(cwd, filePath);
+
+  // Security: Validate path doesn't escape working directory
+  validatePathSecurity(absolutePath, cwd);
 
   // Check file exists
   if (!existsSync(absolutePath)) {

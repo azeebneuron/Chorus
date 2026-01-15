@@ -14,6 +14,7 @@ import type {
   ToolMessage,
   ToolCall,
 } from "./types/index.js";
+import { validateJsonSchema, validateInput, sanitizeError } from "./validation.js";
 
 const DEFAULT_MAX_ITERATIONS = 10;
 
@@ -30,6 +31,12 @@ export function createAgent(
     input: string,
     options?: { signal?: AbortSignal }
   ): Promise<AgentResult> {
+    // Validate input before processing
+    const inputValidation = validateInput(input, { maxLength: config.maxInputLength });
+    if (!inputValidation.valid) {
+      throw new Error(inputValidation.error ?? "Invalid input");
+    }
+
     const state: AgentState = {
       messages: [
         { role: "system", content: config.systemPrompt },
@@ -129,7 +136,7 @@ export function createAgent(
 }
 
 /**
- * Execute a single tool call
+ * Execute a single tool call with validation
  */
 async function executeToolCall(
   ctx: AgentContext,
@@ -146,12 +153,30 @@ async function executeToolCall(
     };
   }
 
+  // Validate tool arguments against schema before execution
+  const validation = validateJsonSchema(toolCall.arguments, tool.parameters);
+  if (!validation.valid) {
+    return {
+      role: "tool",
+      toolCallId: toolCall.id,
+      content: JSON.stringify({
+        error: `Invalid arguments for tool '${toolCall.name}': ${validation.errors.join(", ")}`,
+      }),
+    };
+  }
+
   try {
     // Before tool call hook
     await hooks?.onBeforeToolCall?.(ctx, toolCall.name, toolCall.arguments);
 
-    // Execute the tool
-    const result = await tool.execute(toolCall.arguments);
+    // Execute the tool with timeout protection
+    const timeoutMs = ctx.config.toolTimeout ?? 30000;
+    const result = await Promise.race([
+      tool.execute(toolCall.arguments),
+      new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error(`Tool '${toolCall.name}' execution timed out after ${timeoutMs}ms`)), timeoutMs)
+      ),
+    ]);
 
     // After tool call hook
     await hooks?.onAfterToolCall?.(ctx, toolCall.name, result);
@@ -162,7 +187,8 @@ async function executeToolCall(
       content: typeof result === "string" ? result : JSON.stringify(result),
     };
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
+    // Sanitize error messages to prevent information leakage
+    const errorMessage = error instanceof Error ? sanitizeError(error) : String(error);
     return {
       role: "tool",
       toolCallId: toolCall.id,
@@ -220,6 +246,16 @@ export class AgentBuilder {
 
   maxIterations(iterations: number): this {
     this.config.maxIterations = iterations;
+    return this;
+  }
+
+  maxInputLength(length: number): this {
+    this.config.maxInputLength = length;
+    return this;
+  }
+
+  toolTimeout(timeoutMs: number): this {
+    this.config.toolTimeout = timeoutMs;
     return this;
   }
 
