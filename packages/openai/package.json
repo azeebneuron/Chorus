@@ -1,0 +1,50 @@
+{
+  "name": "@chorus/openai",
+  "version": "0.1.0",
+  "description": "OpenAI provider for the Chorus multi-agent framework",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "openai": "^4.104.0"
+  },
+  "devDependencies": {
+    "@chorus/core": "workspace:*",
+    "tsup": "^8.3.5",
+    "vitest": "^4.0.17"
+  },
+  "peerDependencies": {
+    "@chorus/core": "workspace:*"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "llm",
+    "openai",
+    "gpt",
+    "multi-agent",
+    "chorus"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chorus-ai/chorus"
+  }
+}
